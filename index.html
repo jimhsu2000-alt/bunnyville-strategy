@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mermaid 圖表</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<style>
+  body {
+    background-color: #f1f3f5;
+    color: #1e293b;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  #mermaid-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px;
+    width: 100%;
+    min-height: 100vh;
+  }
+  .mermaid {
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    justify-content: center;
+  }
+  .mermaid svg {
+    height: auto !important;
+    max-width: 100% !important;
+  }
+</style>
+</head>
+<body class="p-0 m-0">
+
+  <!-- Top bar matching screenshot style -->
+  <div class="bg-white border-b border-gray-200 px-6 py-3 flex justify-between items-center shadow-sm">
+    <div class="flex items-center gap-2">
+      <span class="font-bold text-gray-800 text-base tracking-wide">Mermaid 圖表</span>
+    </div>
+    <div class="text-xs text-gray-500">
+      Bunnyville 品牌全網能見度爆發策略流程
+    </div>
+  </div>
+
+  <!-- Mermaid Container -->
+  <div id="mermaid-wrapper">
+    <div class="mermaid">
+flowchart TD
+    classDef core fill:#b45309,stroke:#f59e0b,stroke-width:2px,color:#fff;
+    classDef step fill:#fdfbf7,stroke:#9333ea,stroke-width:1.5px,color:#1e293b;
+    classDef purpleNode fill:#4c1d95,stroke:#a855f7,stroke-width:2px,color:#fff;
+    classDef greenNode fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#fff;
+    classDef blueNode fill:#1e1b4b,stroke:#6366f1,stroke-width:2px,color:#fff;
+    classDef lightBox fill:#fdfbf7,stroke:#c084fc,stroke-width:1px,color:#1e293b;
+
+    Goal(["🎯 核心目標：<br/>Bunnyville 品牌<br/>全網能見度爆發"]):::core
+
+    subgraph Step1 ["1. 長尾關鍵字與文案池"]
+        K1["台灣威士忌得獎<br/>總數 / 那些年 威<br/>士忌"]:::lightBox
+        K2["台灣威士忌排名<br/>/ 國際威士忌排<br/>名"]:::lightBox
+        AI_Draft["AI 批量文案庫存<br/>(評測文 / 得獎盤<br/>點 / 品酒指南 /<br/>故事)"]:::lightBox
+    end
+
+    subgraph Step2 ["2. 審核樞紐 (解決你的審查瓶頸)"]
+        MB["Manager Bot /<br/>內容經理"]:::purpleNode
+        RuleCheck["合規自動檢查<br/>(菸酒法規警語)<br/>+ 長尾關鍵字置<br/>入"]:::lightBox
+        BatchSign["週批次審核看板<br/>(你只需 15 分鐘<br/>一次勾選放行)"]:::lightBox
+    end
+
+    subgraph Step3 ["3. 每日 5 篇 SEO 權重發布 (Google 能收錄)"]
+        P_Pixnet["痞客邦 Pixnet /<br/>Blogger"]:::greenNode
+        P_Blog["官網 Blog / 品牌<br/>專區 (核心權重)"]:::greenNode
+        P_Vocus["方格子 Vocus /<br/>Medium"]:::greenNode
+    end
+
+    subgraph Step4 ["4. 10 個社群小號矩陣運營"]
+        M_Lead["軟性提及兔兔酒<br/>評測<br/>反向引流回到官<br/>網 (Backlinks)"]:::blueNode
+        M_Interact["每日自動養號：<br/>瀏覽威士忌話<br/>題、按讚、生活<br/>化自然留言"]:::blueNode
+        M_Post["每週每號 3 篇軟<br/>性貼文<br/>(品酒心得、酒吧<br/>打卡、日常聚會)"]:::blueNode
+    end
+
+    subgraph FinalResult ["5. 最終流量閉環"]
+        EndNode(["🚀 官網自然搜尋流量爆發 與 品牌聲量登頂"]):::core
+    end
+
+    Goal --> Step1
+    K1 --> AI_Draft
+    K2 --> AI_Draft
+    AI_Draft --> Step2
+    MB --> RuleCheck --> BatchSign
+
+    BatchSign -->|每日 5 篇定時排程| Step3
+    BatchSign -->|派發日常貼文排程| Step4
+
+    Step3 --> EndNode
+    Step4 --> EndNode
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      securityLevel: 'loose',
+      flowchart: {
+        curve: 'basis',
+        htmlLabels: true
+      }
+    });
+  </script>
+</body>
+</html>
